@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+
+ centos:
+    build: .
+    volumes:
+      - volume_share:/data
+
+ nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+    depends_on:
+      - centos
+    volumes:
+      - volume_share:/usr/share/nginx/html
+     
+volumes:
+    volume_share:
